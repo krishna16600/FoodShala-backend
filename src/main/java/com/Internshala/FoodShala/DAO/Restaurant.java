@@ -1,5 +1,6 @@
 package com.Internshala.FoodShala.DAO;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,7 +11,10 @@ public class Restaurant {
     @GeneratedValue
     private Long restaurantId;
     private String restaurantName;
+
+    @Column(unique = true)
     private String email;
+
     private String mobileNo;
     private String password;
     private String role="restaurant";
