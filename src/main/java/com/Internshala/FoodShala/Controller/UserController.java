@@ -16,14 +16,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User user) throws DataIntegrityViolationException {
+    public String addUser(@RequestBody User user) throws DataIntegrityViolationException {
         User addedUser = null;
         try{
             addedUser = userService.addUser(user);
         } catch (DataIntegrityViolationException e){
             System.out.println(e.toString());
         }
-            return addedUser;
+           if(addedUser!=null)
+                return "\"User Registered\"";
+           else
+               return "\"User Already Exists\"";
 
     }
 
