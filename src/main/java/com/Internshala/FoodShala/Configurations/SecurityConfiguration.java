@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -39,7 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .antMatchers("/addUser").permitAll()
                     .antMatchers("/addRestaurant").permitAll()
-                    .antMatchers("/getAllRestaurants").permitAll()
                     .antMatchers("/getAllFoodItems").permitAll()
                     .antMatchers("/getAllFoodItemsOfRestaurant/{restaurantId}").permitAll()
                     .anyRequest().authenticated().and().httpBasic();
@@ -48,6 +48,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }
