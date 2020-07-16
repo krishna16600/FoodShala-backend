@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -27,5 +28,10 @@ public class RestaurantService {
 
     public List<Restaurant> getAllRestaurants(){
         return restaurantRepo.findAll();
+    }
+
+    public Long getId(Principal principal) {
+        Restaurant restaurant = restaurantRepo.findByEmail(principal.getName());
+        return restaurant.getRestaurantId();
     }
 }
