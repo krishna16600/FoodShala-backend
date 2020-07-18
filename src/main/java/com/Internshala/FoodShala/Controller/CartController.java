@@ -3,7 +3,6 @@ package com.Internshala.FoodShala.Controller;
 import com.Internshala.FoodShala.DAO.Cart;
 import com.Internshala.FoodShala.Service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -38,5 +37,10 @@ public class CartController {
     @GetMapping("/show-cart")
     public List<Cart> showCart(Principal principal){
         return cartService.showUserCart(principal);
+    }
+
+    @GetMapping("/check-out")
+    public void checkout(Principal principal){
+        cartService.checkOut(principal);
     }
 }
