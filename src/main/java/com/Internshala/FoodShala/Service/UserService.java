@@ -44,4 +44,8 @@ public class UserService {
     public User getUser(Long userId){
         return userRepo.findByUserId(userId);
     }
+
+    public User getUserByEmail(Principal principal){
+        return userRepo.findByEmail(principal.getName());
+    }
 }
