@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface MenuRepo extends JpaRepository<Menu, Long> {
     List<Menu> findMenuByRestaurantRestaurantId(Long restaurantId);
+    Menu findMenuByFoodId(Long foodId);
+    String deleteByFoodId(Long id);
 }

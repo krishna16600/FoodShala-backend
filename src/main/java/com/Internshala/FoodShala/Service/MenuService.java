@@ -5,8 +5,10 @@ import com.Internshala.FoodShala.DAO.Restaurant;
 import com.Internshala.FoodShala.Repository.MenuRepo;
 import com.Internshala.FoodShala.Repository.RestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -30,4 +32,20 @@ public class MenuService {
         return menuRepo.findAll();
     }
 
+    public Menu getItem(Long foodId){
+        return menuRepo.findMenuByFoodId(foodId);
+    }
+
+    public Menu editItem(Menu item){
+        Menu oldItem = menuRepo.findMenuByFoodId(item.getFoodId());
+        oldItem.setFoodName(item.getFoodName());
+        oldItem.setFoodType(item.getFoodType());
+        oldItem.setPrice(item.getPrice());
+        menuRepo.saveAndFlush(oldItem);
+        return oldItem;
+    }
+
+    public String deleteItem(Long foodId){
+        return menuRepo.deleteByFoodId(foodId);
+    }
 }
