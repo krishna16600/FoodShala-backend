@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 public class UserService {
 
@@ -33,5 +35,13 @@ public class UserService {
             throw new DataIntegrityViolationException("User exists");
         }
         return addedUser;
+    }
+
+    public Long getId(Principal principal){
+        User user = userRepo.findByEmail(principal.getName());
+        return user.getUserId();
+    }
+    public User getUser(Long userId){
+        return userRepo.findByUserId(userId);
     }
 }

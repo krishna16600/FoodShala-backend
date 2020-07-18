@@ -1,17 +1,17 @@
 package com.Internshala.FoodShala.Controller;
 
+import com.Internshala.FoodShala.DAO.Menu;
 import com.Internshala.FoodShala.DAO.Restaurant;
 import com.Internshala.FoodShala.Service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class RestaurantController {
 
     @Autowired
@@ -36,5 +36,26 @@ public class RestaurantController {
     @GetMapping("/getAllRestaurants")
     public List<Restaurant> getRestaurants(){
         return restaurantService.getAllRestaurants();
+    }
+
+    @GetMapping("/check-role/{email}")
+    public String getRole(@PathVariable String email){
+        String role = "\"restaurant\"";
+        try{
+            role = restaurantService.getRole(email);
+        }catch(Exception e){
+            System.out.println("Error in finding restaurant!");
+        }
+        return role;
+    }
+
+    @GetMapping("/get-restaurant")
+    public Restaurant getRestaurant(Principal principal){
+        return restaurantService.getRestaurant(principal);
+    }
+
+    @GetMapping("/get-menu")
+    public List<Menu> getmenu(Principal principal){
+        return restaurantService.getMenu(principal);
     }
 }

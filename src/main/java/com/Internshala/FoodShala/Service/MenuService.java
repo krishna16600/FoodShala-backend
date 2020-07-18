@@ -7,6 +7,8 @@ import com.Internshala.FoodShala.Repository.RestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MenuService {
 
@@ -23,4 +25,9 @@ public class MenuService {
         return "\"Food Item Added Successfully\"";
 
     }
+
+    public List<Menu> getFoodItems(){
+        return menuRepo.findAll();
+    }
+
 }
