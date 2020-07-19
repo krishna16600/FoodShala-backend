@@ -26,13 +26,6 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public Long getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
-    }
 
     public User getUser() {
         return user;

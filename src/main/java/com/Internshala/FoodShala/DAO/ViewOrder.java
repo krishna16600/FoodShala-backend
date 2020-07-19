@@ -30,13 +30,7 @@ public class ViewOrder {
         this.quantity = quantity;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
     public Date getDate() {
         return date;
