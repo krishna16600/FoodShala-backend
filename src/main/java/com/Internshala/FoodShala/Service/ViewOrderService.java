@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,8 +21,22 @@ public class ViewOrderService {
    private RestaurantService restaurantService;
 
 
-    public List<ViewOrder> getOrdersByRestaurant(Principal principal){
+    public ArrayList<ArrayList<ViewOrder>> getOrdersByRestaurant(Principal principal){
         Restaurant rest = restaurantService.getRestaurant(principal);
-        return viewOrderRepo.findByRestaurantRestaurantId(rest.getRestaurantId());
+        List<ViewOrder> orderList = viewOrderRepo.findByRestaurantRestaurantId(rest.getRestaurantId());
+        ArrayList<ArrayList<ViewOrder>> result = new ArrayList<>();
+
+        for(int i=0;i<orderList.size();i++){
+            ArrayList<ViewOrder> tempOrder = new ArrayList<>();
+            Date date = orderList.get(i).getDate();
+
+            while(i<orderList.size() && orderList.get(i).getDate().equals(date)){
+                tempOrder.add(orderList.get(i));
+                i++;
+            }
+            result.add(tempOrder);
+            i--;
+        }
+        return result;
     }
 }
