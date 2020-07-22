@@ -10,7 +10,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200" , allowedHeaders = "*")
+@CrossOrigin(origins = "http://foodshalabykrishna.s3-website.us-east-2.amazonaws.com" , allowedHeaders = "*")
 public class CartController {
 
     @Autowired

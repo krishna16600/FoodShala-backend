@@ -3,8 +3,6 @@ package com.Internshala.FoodShala.Controller;
 import com.Internshala.FoodShala.DAO.User;
 import com.Internshala.FoodShala.DAO.ViewOrder;
 import com.Internshala.FoodShala.Service.ViewOrderService;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,7 @@ import java.security.Principal;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@CrossOrigin(origins = "http://foodshalabykrishna.s3-website.us-east-2.amazonaws.com", allowedHeaders = "*")
 public class ViewOrderController {
 
     @Autowired
